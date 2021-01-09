@@ -54,7 +54,7 @@ export default function Basic({ children } : { children: JSX.Element }) {
 
             <div className='colors__container'>
                 <button>Yellow</button>
-                <button>Pink</button>
+                <button>Pinky</button>
                 <button className='colors__last-button'>Green</button>
             </div>
         </NewNote>
