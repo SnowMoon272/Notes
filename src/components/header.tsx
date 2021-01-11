@@ -6,7 +6,7 @@ import PostitLogo from "../assets/svgs/post-it-brand-vector-logo.svg"
 import NewNote from "./menus/new_note"
 
 
-const Header = ({ state, setState }) => (
+const Header = ({ colorState, setColorState }) => (
   <header
     style={{
       background: `${colors.yellow}`,
@@ -37,7 +37,7 @@ const Header = ({ state, setState }) => (
         />
       </Link>
 
-      <NewNote state={state} setState={setState} >
+      <NewNote colorState={colorState} setColorState={setColorState} >
         <>
             <span> + Nueva nota </span>
         </>
