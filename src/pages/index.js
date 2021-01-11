@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Note from "../components/note"
 
-let Array = []
+let ArrayNots = []
 
 const IndexPage = () => {
 
@@ -11,14 +11,14 @@ const IndexPage = () => {
   useEffect(() => {
 
     
-    Array.push(<Note/>)
+    ArrayNots.push(<Note/>)
 
   }, [ state, setState ])
 
   return(
   <Layout state={state} setState={setState} >
     <SEO title="Home" />
-    {Array.map(note => note)}
+    {ArrayNots.map(note => note)}
   </Layout>
 )}
 
