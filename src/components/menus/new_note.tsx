@@ -1,9 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const NewNote = styled.section`
+const NewNoteStyle = styled.section`
     font-size: 0.8rem;
     position: relative;
+
+    &:hover .colors__container {
+        display: flex;
+    }
 
     & .new-button {
         border-radius: 4px;
@@ -20,7 +24,7 @@ const NewNote = styled.section`
     }
 
     & .colors__container {
-        display:flex;
+        display:none;
         flex-direction: column;
         position: absolute;
         width: 100%;
@@ -44,19 +48,24 @@ const NewNote = styled.section`
     }
 `
 
-export default function Basic({ children } : { children: JSX.Element }) {
+export default function Basic({ children, state, setState } 
+    : { 
+        children: JSX.Element, 
+        state: Object, 
+        setState: React.SetStateAction<any> 
+    }) {
 
     return (
-        <NewNote>
+        <NewNoteStyle>
             <button className='new-button'>
                 {children}
             </button>
 
             <div className='colors__container'>
-                <button>Yellow</button>
-                <button>Pinky</button>
-                <button className='colors__last-button'>Green</button>
+                <button onClick={() => setState({...state})} >Yellow</button>
+                <button onClick={() => setState({...state})} >Pinky</button>
+                <button onClick={() => setState({...state})}  className='colors__last-button'>Green</button>
             </div>
-        </NewNote>
+        </NewNoteStyle>
     )
 }

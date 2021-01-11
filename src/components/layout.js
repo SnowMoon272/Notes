@@ -11,11 +11,11 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, state, setState }) => {
 
   return (
     <>
-      <Header />
+      <Header state={state} setState={setState} />
       <div>
 
 

@@ -5,10 +5,11 @@ import PropTypes from "prop-types"
 import PostitLogo from "../assets/svgs/post-it-brand-vector-logo.svg"
 import NewNote from "./menus/new_note"
 
-const Header = () => (
+
+const Header = ({ state, setState }) => (
   <header
     style={{
-      background: `${colors.pink}`,
+      background: `${colors.yellow}`,
       height: 'fit-content',
       padding: '1rem',
     }}
@@ -36,7 +37,7 @@ const Header = () => (
         />
       </Link>
 
-      <NewNote>
+      <NewNote state={state} setState={setState} >
         <>
             <span> + Nueva nota </span>
         </>
