@@ -63,7 +63,7 @@ export default function Basic({ children, colorState, setColorState }
 
             <div className='colors__container'>
                 <button onClick={() => setColorState({...colorState, color: 'Yellow'})} >Yellow</button>
-                <button onClick={() => setColorState({...colorState, color: 'Pinky'})} >Pinky</button>
+                <button onClick={() => setColorState({...colorState, color: 'Blue'})} >Blue</button>
                 <button onClick={() => setColorState({...colorState, color: 'Green'})}  className='colors__last-button'>Green</button>
             </div>
         </NewNoteStyle>
