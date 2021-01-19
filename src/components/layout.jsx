@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import Header from "./header"
+import Footer from "./footer"
 import "./layout.css"
 
 const Layout = ({ children, colorState, setColorState }) => {
@@ -16,14 +17,10 @@ const Layout = ({ children, colorState, setColorState }) => {
   return (
     <>
       <Header colorState={colorState} setColorState={setColorState} />
-      <div>
 
+      <main>{children}</main>
 
-        <main>{children}</main>
-
-        {/* <footer>
-        </footer> */}
-      </div>
+      <Footer/>
     </>
   )
 }

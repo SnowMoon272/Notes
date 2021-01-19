@@ -1,9 +1,15 @@
+@font-face {
+  font-family: BariolRegular;
+  src: url("../../src/static/fonts/Bariol_Regular.otf");
+  font-display: fallback;
+}
+
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font: 112.5%/1.45em georgia, serif, sans-serif;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow: hidden;
   font-size: 18px;
 }
 body {

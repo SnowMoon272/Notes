@@ -3,7 +3,7 @@ import React from "react"
 import colors from "../utils/colors"
 import PropTypes from "prop-types"
 import PostitLogo from "../assets/svgs/post-it-brand-vector-logo.svg"
-import NewNote from "./menus/new_note"
+import NewNote from "./menus/NewNote"
 
 
 const Header = ({ colorState, setColorState }) => (

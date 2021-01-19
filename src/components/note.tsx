@@ -1,4 +1,5 @@
-import React from 'react'
+import { string } from 'prop-types'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import colors from '../utils/colors'
 
@@ -109,6 +110,11 @@ export default function Note({color}: {
     color: string
 
 }) {
+ 
+    const [Textstate, setTextstate] = useState({ 
+        Tittle: "",
+        Text: "",
+    })
 
     return (
         <Postit 
@@ -117,7 +123,12 @@ export default function Note({color}: {
             green={color === 'Green' ? true : null}
         >
             <div className="Title">
-                <input type="text" placeholder="Tittle"/>
+        
+                <input 
+                    type="text" 
+                    placeholder="Tittle" 
+                    onChange={(event) => {setTextstate({...Textstate, Tittle: event.target.value})}}
+                />
                 <div>
                     <button className="ButtonMC1"></button>
                     <button className="ButtonMC2"></button>
@@ -126,6 +137,7 @@ export default function Note({color}: {
             </div>
             <div className="Content">
                 <textarea
+                    onChange={(event) => {setTextstate({...Textstate, Text: event.target.value})}}
                     placeholder="Text"
                 />
             </div>

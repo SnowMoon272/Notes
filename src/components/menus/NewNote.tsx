@@ -48,11 +48,15 @@ const NewNoteStyle = styled.section`
     }
 `
 
-export default function Basic({ children, colorState, setColorState } 
+export default function NewNote({ children, colorState, setColorState } 
     : { 
         children: JSX.Element, 
-        colorState: Object, 
-        setColorState: React.SetStateAction<any> 
+        colorState: {
+            color: string,
+        }, 
+        setColorState: React.Dispatch<React.SetStateAction<{
+            color: string,
+        }>>
     }) {
         
     return (
@@ -63,7 +67,7 @@ export default function Basic({ children, colorState, setColorState }
 
             <div className='colors__container'>
                 <button onClick={() => setColorState({...colorState, color: 'Yellow'})} >Yellow</button>
-                <button onClick={() => setColorState({...colorState, color: 'Blue'})} >Blue</button>
+                <button onClick={() => setColorState({...colorState, color: 'Blue' })} >Blue</button>
                 <button onClick={() => setColorState({...colorState, color: 'Green'})}  className='colors__last-button'>Green</button>
             </div>
         </NewNoteStyle>
