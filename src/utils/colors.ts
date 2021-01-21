@@ -8,5 +8,6 @@ export default {
     greenBTN: '#2dc840',
     yellowBTN: '#f9bf31',
     redBTN: '#e1322c',
+    purpleBar: '#9e02b4',
 
 }

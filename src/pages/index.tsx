@@ -1,16 +1,20 @@
+// Moduls
 import React, { useEffect, useState } from "react"
+// Componets
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Note from "../components/note"
+import MiniBar from "../components/MiniBar"
+// Utils
+import styled from "styled-components"
 import colors from "../utils/colors"
-import styled from 'styled-components'
 
-const PostitContainer = styled.div`
+const NoteContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  height: calc(100vh - 9.44rem);
+  height: calc(100vh - 12.44rem);
   background-color: ${colors.background};
   padding: 1rem;
   overflow: scroll;
@@ -42,9 +46,14 @@ const IndexPage = () => {
   return(
   <Layout colorState={colorState} setColorState={setColorState} >
     <SEO title="Home" />
-        <PostitContainer>
+        <NoteContainer>
          {ArrayNots.map(note => note)}
-        </PostitContainer>
+        </NoteContainer>
+        <MiniBar>
+          <>
+           MiniBar Barra
+          </>
+        </MiniBar>
   </Layout>
 )}
 

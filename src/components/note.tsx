@@ -2,6 +2,7 @@ import { string } from 'prop-types'
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import colors from '../utils/colors'
+import ButtonsFun from '../components/buttons/ButtonsFun'
 
 interface Props {
     yellow: boolean
@@ -58,23 +59,6 @@ const Postit = styled('section')<Props> `
                 border-radius: 50%;
                 border: none;
             }
-
-            & .ButtonMC1 {
-                background-color: ${colors.greenBTN};
-                
-            }
-            & .ButtonMC2 {
-                background-color: ${colors.yellowBTN};
-
-            }
-            & .ButtonMC3 {
-                background-color: ${colors.redBTN};
-
-            }
-            &:hover button {
-                cursor: pointer;
-
-            }
         }
     }
 
@@ -130,9 +114,9 @@ export default function Note({color}: {
                     onChange={(event) => {setTextstate({...Textstate, Tittle: event.target.value})}}
                 />
                 <div>
-                    <button className="ButtonMC1"></button>
-                    <button className="ButtonMC2"></button>
-                    <button className="ButtonMC3"></button>
+                    <ButtonsFun color="green" />
+                    <ButtonsFun color="yellow" />
+                    <ButtonsFun color="red" />
                 </div>
             </div>
             <div className="Content">
