@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import colors from '../../utils/colors'
+// import save from "../../assets/svgs/salvar.svg"
 
 
 interface Props {
@@ -9,13 +10,12 @@ interface Props {
     red: boolean
 }
 
-const ButtonsFunStyle = styled('section')<Props> `
-    height: 16px;
-    width: 16px;
-    margin-right: 2px;
-    height: 25px;
-    border-radius: 50%;
-    border: none;
+const ButtonsFunStyle = styled('button')<Props> `
+    height: 1.3rem;
+    width: 1.3rem;
+    margin-left: 0.2rem;
+    border-radius: 100px;
+    border: 1px solid black;
 
     ${(props: {green : boolean}) => props.green && css`
         background-color: ${colors.greenBTN};
@@ -32,24 +32,37 @@ const ButtonsFunStyle = styled('section')<Props> `
     &:hover {
         cursor: pointer;
     }
+
+    /* & .Hola {
+        display: none ;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+            display: block ;   
+        }
+    } */
 `
 
-export default function ButtonsFun({ color }: {
+
+
+export default function ButtonsFun({ color, handleFunction , OnOff }: {
     color: string,
+    handleFunction: Function,
+    OnOff?: boolean,
 }) {
     
-    
-    color==="green" ? console.log( "Hola mami soy verde" ) :null ;
-    color==="yellow" ? console.log( "Hola mami soy amarillo" ) :null ;
-    color==="red" ? console.log( "Hola mami soy rojo" ) :null ;
 
     return (
         <ButtonsFunStyle 
             green={color === 'green' ? true : null}
             yellow={color === 'yellow' ? true : null}
             red={color === 'red' ? true : null}
+            onClick={() => handleFunction(color)}
         >
-            Icon
+            {/* <div className="Hola">
+                Ho
+            </div> */}
         </ButtonsFunStyle>
     )
 }

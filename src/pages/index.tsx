@@ -5,6 +5,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Note from "../components/note"
 import MiniBar from "../components/MiniBar"
+import MiniNotes from "../components/MiniNotes"
+
 // Utils
 import styled from "styled-components"
 import colors from "../utils/colors"
@@ -25,11 +27,23 @@ const NoteContainer = styled.div`
   }
 `
 
-let ArrayNots = []
+let ArrayNots = [];
+let ArrayBar = [];
+
+export interface Props {
+  Tittle: string;
+  Text: string;
+}
 
 const IndexPage = () => {
 
+  const [matchState, setmatchState] = useState<Props>({
+    Tittle: "",
+    Text: "",
+  })
+
   const [state, setState] = useState({})
+
   const [colorState, setColorState] = useState<{
     color: string
   }>({
@@ -38,7 +52,13 @@ const IndexPage = () => {
   
   useEffect(() => {
     
-    colorState.color !== null && ArrayNots.push(<Note color={colorState.color} />)
+    colorState.color !== null && ArrayNots.push(<Note 
+                                                  ArrayBar={ArrayBar} 
+                                                  matchState={matchState} 
+                                                  setmatchState={setmatchState} 
+                                                  color={colorState.color} 
+                                                />)
+
     setState({...state});
 
   }, [ colorState, setColorState ])
@@ -47,13 +67,11 @@ const IndexPage = () => {
   <Layout colorState={colorState} setColorState={setColorState} >
     <SEO title="Home" />
         <NoteContainer>
-         {ArrayNots.map(note => note)}
+         {ArrayNots}
         </NoteContainer>
-        <MiniBar>
-          <>
-           MiniBar Barra
-          </>
-        </MiniBar>
+        <MiniBar arry={ArrayBar} />
+    {matchState.Tittle}
+    {matchState.Text}
   </Layout>
 )}
 

@@ -1,24 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 import colors from "../utils/colors"
-
+// import MiniNotes from "../components/MiniNotes"
 
 
 const MiniBarStyle = styled.section`
-  background-color: ${colors.purpleBar};
+  background-color: ${colors.miniBar};
   height: 3rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  overflow-x: scroll;
+
 `
 
-export default function MiniBar( {children} 
-    : { 
-    children: JSX.Element,
-}) {
+export default function MiniBar( {arry}: any ) {
+    {console.log({arry})}
+
     return (
         <MiniBarStyle>
-            {children} 
+            {arry}
         </MiniBarStyle>
     )
 }

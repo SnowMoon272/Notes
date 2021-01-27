@@ -1,17 +1,20 @@
-import { string } from 'prop-types'
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import colors from '../utils/colors'
 import ButtonsFun from '../components/buttons/ButtonsFun'
+import { Props } from '../pages/index'
+import MiniNotes from "../components/MiniNotes"
+// import { any } from 'prop-types'
 
-interface Props {
+
+interface PropsStyle {
     yellow: boolean
     blue: boolean
     green: boolean
 
 }
 
-const Postit = styled('section')<Props> `
+const Postit = styled('section')<PropsStyle> `
     background-color: #f3f3f3;
     width: 220px;
     height: 220px;
@@ -32,7 +35,7 @@ const Postit = styled('section')<Props> `
         
         & input {
             border: none;
-            max-width: 74%;
+            width: 74%;
 
             ${(props: {yellow : boolean}) => props.yellow && css`
                 background-color: ${colors.yellowT};
@@ -47,18 +50,9 @@ const Postit = styled('section')<Props> `
             `}
         }
 
-        & div {
+        & .buttonsContainer {
             padding: 0.1rem;
-            display: flex;
-            
-            & button {
-                height: 16px;
-                width: 16px;
-                margin-right: 2px;
-                height: 25px;
-                border-radius: 50%;
-                border: none;
-            }
+            display: flex; 
         }
     }
 
@@ -90,15 +84,42 @@ const Postit = styled('section')<Props> `
 
 
 
-export default function Note({color}: {
-    color: string
-
+export default function Note({color, matchState, setmatchState, ArrayBar} : {
+    color: string,
+    setmatchState: React.Dispatch<React.SetStateAction<Props>>,
+    matchState: Props,
+    ArrayBar: any,
 }) {
- 
+    
     const [Textstate, setTextstate] = useState({ 
         Tittle: "",
         Text: "",
     })
+
+    const [noteStateAction, setNoteStateAction] = useState({ 
+        blockTitle: false,
+        blockBody: false,
+        minimize: false,
+        delete: false
+    })
+
+    const handleBlockInput = (noteActions: string) => {
+        if (noteActions === "green") setNoteStateAction({...noteStateAction,
+                                                            blockTitle: noteStateAction.blockTitle ? false : true ,
+                                                            blockBody: noteStateAction.blockBody ? false : true 
+                                                        })
+                                    
+         else if (noteActions === "yellow") {
+            setmatchState({...matchState, Tittle: Textstate.Tittle, Text: Textstate.Text})
+            ArrayBar.push(<MiniNotes 
+                            matchState={matchState} 
+                            color={color} 
+                        />)
+            // Eliminar elemento del array
+        } else if (noteActions === "red") {
+
+        }
+    }
 
     return (
         <Postit 
@@ -110,19 +131,22 @@ export default function Note({color}: {
         
                 <input 
                     type="text" 
+                    readOnly={ noteStateAction.blockTitle && true }
                     placeholder="Tittle" 
                     onChange={(event) => {setTextstate({...Textstate, Tittle: event.target.value})}}
                 />
-                <div>
-                    <ButtonsFun color="green" />
-                    <ButtonsFun color="yellow" />
-                    <ButtonsFun color="red" />
+                <div className="buttonsContainer">
+                    <ButtonsFun handleFunction={handleBlockInput} color="green" OnOff={noteStateAction.blockTitle} />
+                    <ButtonsFun handleFunction={handleBlockInput} color="yellow" />
+                    <ButtonsFun handleFunction={handleBlockInput} color="red" />
                 </div>
             </div>
             <div className="Content">
                 <textarea
                     onChange={(event) => {setTextstate({...Textstate, Text: event.target.value})}}
                     placeholder="Text"
+                    readOnly={ noteStateAction.blockBody && true }
+                    
                 />
             </div>
         </Postit>
