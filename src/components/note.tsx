@@ -84,12 +84,16 @@ const Postit = styled('section')<PropsStyle> `
 
 
 
-export default function Note({color, ArrayBar, setState, state } : {
+export default function Note({color, ArrayBar, ArrayNots, setState, state, id } : {
     color: string,
     ArrayBar: any,
+    ArrayNots: any,
     setState: React.Dispatch<React.SetStateAction<{}>>,
     state: Object,
+    id: number,
 }) {
+
+ 
 
     const [Textstate, setTextstate] = useState({ 
         Tittle: "",
@@ -113,14 +117,27 @@ export default function Note({color, ArrayBar, setState, state } : {
                 matchStateText={Textstate.Text}
                 color={color} 
                 />)
-            setState({...state})
-            
-            // Eliminar elemento del array
-            // Dar un ID a cada nota nueva creada :D
+                let pos
+                for (let index = 0; index < ArrayNots.length; index++) {
+                    let element = ArrayNots[index];
+                    console.log(element)
+                    if (element.props.id === id) {
+                        pos = ArrayNots.indexOf(element.props.id) 
+                        
+                    }
+                    
+                    ArrayNots.splice(pos,1)
+                }
+                
+                setState({...state})
+
         } else if (noteActions === "red") {
 
         }
     }
+
+    console.log(id)
+    console.log(ArrayNots)
 
     return (
         <Postit 
