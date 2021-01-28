@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import colors from '../utils/colors'
 import ButtonsFun from '../components/buttons/ButtonsFun'
@@ -84,13 +84,13 @@ const Postit = styled('section')<PropsStyle> `
 
 
 
-export default function Note({color, matchState, setmatchState, ArrayBar} : {
+export default function Note({color, ArrayBar, setState, state } : {
     color: string,
-    setmatchState: React.Dispatch<React.SetStateAction<Props>>,
-    matchState: Props,
     ArrayBar: any,
+    setState: React.Dispatch<React.SetStateAction<{}>>,
+    state: Object,
 }) {
-    
+
     const [Textstate, setTextstate] = useState({ 
         Tittle: "",
         Text: "",
@@ -99,8 +99,6 @@ export default function Note({color, matchState, setmatchState, ArrayBar} : {
     const [noteStateAction, setNoteStateAction] = useState({ 
         blockTitle: false,
         blockBody: false,
-        minimize: false,
-        delete: false
     })
 
     const handleBlockInput = (noteActions: string) => {
@@ -110,12 +108,15 @@ export default function Note({color, matchState, setmatchState, ArrayBar} : {
                                                         })
                                     
          else if (noteActions === "yellow") {
-            setmatchState({...matchState, Tittle: Textstate.Tittle, Text: Textstate.Text})
-            ArrayBar.push(<MiniNotes 
-                            matchState={matchState} 
-                            color={color} 
-                        />)
+             ArrayBar.push(<MiniNotes 
+                matchStateTitle={Textstate.Tittle} 
+                matchStateText={Textstate.Text}
+                color={color} 
+                />)
+            setState({...state})
+            
             // Eliminar elemento del array
+            // Dar un ID a cada nota nueva creada :D
         } else if (noteActions === "red") {
 
         }

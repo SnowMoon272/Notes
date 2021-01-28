@@ -15,7 +15,7 @@ const MiniBarStyle = styled.section`
 `
 
 export default function MiniBar( {arry}: any ) {
-    {console.log({arry})}
+    // {console.log({arry})}
 
     return (
         <MiniBarStyle>

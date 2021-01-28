@@ -37,11 +37,6 @@ export interface Props {
 
 const IndexPage = () => {
 
-  const [matchState, setmatchState] = useState<Props>({
-    Tittle: "",
-    Text: "",
-  })
-
   const [state, setState] = useState({})
 
   const [colorState, setColorState] = useState<{
@@ -49,20 +44,20 @@ const IndexPage = () => {
   }>({
     color: null,
   })
-  
+
   useEffect(() => {
     
     colorState.color !== null && ArrayNots.push(<Note 
                                                   ArrayBar={ArrayBar} 
-                                                  matchState={matchState} 
-                                                  setmatchState={setmatchState} 
                                                   color={colorState.color} 
+                                                  setState={setState}
+                                                  state={state}
                                                 />)
 
     setState({...state});
 
   }, [ colorState, setColorState ])
-
+  
   return(
   <Layout colorState={colorState} setColorState={setColorState} >
     <SEO title="Home" />
@@ -70,8 +65,8 @@ const IndexPage = () => {
          {ArrayNots}
         </NoteContainer>
         <MiniBar arry={ArrayBar} />
-    {matchState.Tittle}
-    {matchState.Text}
+    {/* {matchState.Tittle} <br/>
+    {matchState.Text} */}
   </Layout>
 )}
 

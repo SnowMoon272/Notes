@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import colors from "../utils/colors"
 import { Props } from '../pages/index'
@@ -40,26 +40,24 @@ const MiniNoteStyle = styled('button')<PropsStyle>`
 `
 
 
-export default function MiniNotes({ color, matchState } : {
+export default function MiniNotes({ color, matchStateTitle, matchStateText } : {
     color: string,
-    matchState: Props,
-}) {
-    const [state, setstate] = useState({})
-
+    matchStateTitle: string,
+    matchStateText: string,
+}): JSX.Element {
+    
     const [MiniTextstate, setMiniTextstate] = useState({ 
-        Tittle: "",
-        Text: "",
+        Tittle: matchStateTitle,
+        Text: matchStateText,
     })
-    // setstate({...state})
-    // setMiniTextstate({...MiniTextstate, Tittle: matchState.Tittle, Text: matchState.Text })
-
+    
     return (
         <MiniNoteStyle  
             yellow={color === 'Yellow' ? true : null}
             blue={color === 'Blue' ? true : null}
             green={color === 'Green' ? true : null}
         >
-           {matchState.Tittle}
+           {MiniTextstate.Tittle}
         </MiniNoteStyle>
     )
 }
